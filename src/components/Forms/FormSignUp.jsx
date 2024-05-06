@@ -1,7 +1,42 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import { useState } from 'react'
 const FormSignUp = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    birthDate: '',
+    cpf: '',
+    cnpj: '',
+    tel:'',
+    email: '',
+    password: '',
+  })
+
+  const handleFormEdit = (event, name) => {
+    setFormData({
+      ...formData,
+      [name]: event.target.value
+    })
+  }
+
+  const handleForm = async (event) => {
+   try {
+    event.preventDefault()
+    const response = await fetch(/*endereço backend,*/ {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    const json = await response.json()
+    console.log(response.status)
+    console.log(json)
+
+   } catch (err) {
+
+   }
+  }
+
+
+
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -15,7 +50,7 @@ const FormSignUp = () => {
           <div>
               <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nome completo </label>
               <div class="mt-2">
-                <input id="name" name="name"  type='text' placeholder="Nome completo" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="name" name="name"  type='text' placeholder="Nome completo" required value={formData.name} onChange={(e) => {handleFormEdit(e, 'name')}} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
     
@@ -23,20 +58,20 @@ const FormSignUp = () => {
             <div>
               <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Data de nascimento </label>
               <div class="mt-2">
-                <input id="name" name="date" type='date' required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="name" name="date" type='date' required value={formData.birthDate} onChange={(e) => {handleFormEdit(e, 'birthDate')}} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
     
             <div>
               <label for="cpf/cnpj" class="block text-sm font-medium leading-6 text-gray-900">CPF/CNPJ </label>
               <div class="mt-2">
-                <input id="cpf/cnpj" name="cpf/cnpj" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder = "xxx.xxx.xxx-xx"  required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="cpf/cnpj" name="cpf/cnpj" type="text" required value={formData.cpf.cnpj} onChange={(e) => {handleFormEdit(e, 'cpf,cnpj')}}class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
             <div>
               <label for="telefone" class="block text-sm font-medium leading-6 text-gray-900">Telefone</label>
               <div class="mt-2">
-                <input id="telefone" name="telefone" type="tel" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6"  placeholder="xx xxxxx-xxxx" />
+                <input id="telefone" name="telefone" type="tel" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}" required value={formData.tel} onChange={(e) => {handleFormEdit(e, 'tel')}} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6"  placeholder="xx xxxxx-xxxx" />
               </div>
             </div>
         
@@ -45,7 +80,7 @@ const FormSignUp = () => {
             <div>
               <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email </label>
               <div class="mt-2">
-                <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="email" name="email" type="email" placeholder="Email" required value={formData.email} onChange={(e) => {handleFormEdit(e, 'email')}}autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
         
@@ -56,7 +91,7 @@ const FormSignUp = () => {
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Senha</label>
               </div>
               <div class="mt-2">
-                <input id="password" name="password" type="password" placeholder="Senha" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="password" name="password" type="password" placeholder="Senha" required value={formData.password} onChange={(e) => {handleFormEdit(e, 'password')}}autocomplete="current-password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
       

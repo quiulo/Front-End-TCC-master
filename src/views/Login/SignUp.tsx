@@ -7,7 +7,7 @@ const SignUp = () => {
     <div>
     <div className='flex h-screen'>
       <div className=' bg-azul w-1/2  flex items-center justify-center'>
-          <img className='hover:h-72' src={logoBranca} alt="" srcset="" />
+          <img src={logoBranca} alt="" />
       </div>
       <div className='w-1/2 flex items-center justify-center'>
            <FormSignUp />

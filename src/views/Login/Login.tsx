@@ -5,11 +5,11 @@ import FormLogin from '../../components/Forms/FormLogin';
 const Login = () => {
  return (
     <div>
-      <div className='flex h-screen '>
-        <div className=' bg-azul w-1/2  flex items-center justify-center'>
-            <img className='hover:h-72' src={logoBranca} alt="" srcset="" />
+      <div className='  '>
+        <div className=' '>
+            <img src={logoBranca} alt=""/>
         </div>
-        <div className='w-1/2 flex items-center justify-center'>
+        <div className=''>
              <FormLogin />
         </div>
         </div>
@@ -21,4 +21,11 @@ const Login = () => {
 
 export default Login
 
- 
+{/* <div className=' lg:flex h-screen  '>
+<div className=' bg-azul w-1/2  flex items-center justify-center'>
+    <img src={logoBranca} alt=""/>
+</div>
+<div className='w-1/2 flex items-center justify-center'>
+     <FormLogin />
+</div>
+</div> */}
