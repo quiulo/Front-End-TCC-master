@@ -1,36 +1,34 @@
 import React, { useState } from 'react'
 import {Link} from "react-router-dom";
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 
 const FormLogin = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-  })
+  });
 
-  const handleFormEdit = (event, email) => {
+  const handleFormEdit = (event: React.ChangeEvent<HTMLInputElement>, field: keyof typeof formData) => {
     setFormData({
       ...formData,
-      [email]: event.target.value
-    })
-  }
+      [field]: event.target.value
+    });
+  };
 
-  const handleForm = async (event) => {
-   try {
-    event.preventDefault()
-    const response = await fetch(/*endereço backend,*/ {
-      method: 'POST',
-      body: JSON.stringify(formData)
-    })
-    const json = await response.json()
-    console.log(response.status)
-    console.log(json)
-
-   } catch (err) {
-
-   }
-  }
-
+  const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault();
+      const response = await fetch('/*endereço backend*/', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
+      const json = await response.json();
+      console.log(response.status);
+      console.log(json);
+    } catch (err) {
+      // Tratamento de erro aqui
+    }
+  };
 
   
   const [name, setName] = useState();
@@ -87,7 +85,7 @@ const FormLogin = () => {
                 
                  <button type="submit" class="flex w-full justify-center rounded-md bg-azul px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul"><Link to="/"> Login</Link> </button>
 
-                <GoogleLogin className='w-full' clientId='957265873836-tq4m13fsihfejq6v4pe0iq3mbrsc9vbn.apps.googleusercontent.com'
+                <button className='w-full' clientId='957265873836-tq4m13fsihfejq6v4pe0iq3mbrsc9vbn.apps.googleusercontent.com'
                 buttonText='Continuar com o Google'
                 onSuccess={responseGoogle}
                 />

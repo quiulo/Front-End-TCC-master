@@ -2,34 +2,34 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import { useState } from 'react';
 
+
 function FormContact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     email: '',
     message: '',
-  })
+  });
 
-  const handleFormEdit = (event, email) => {
+  const handleFormEdit = (event: React.ChangeEvent<HTMLInputElement>, email: keyof FormData) => {
     setFormData({
       ...formData,
       [email]: event.target.value
-    })
-  }
+    });
+  };
 
-  const handleForm = async (event) => {
-   try {
-    event.preventDefault()
-    const response = await fetch(/*endereço backend,*/ {
-      method: 'POST',
-      body: JSON.stringify(formData)
-    })
-    const json = await response.json()
-    console.log(response.status)
-    console.log(json)
-
-   } catch (err) {
-
-   }
-  }
+  const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault();
+      const response = await fetch('/*endereço backend*/', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
+      const json = await response.json();
+      console.log(response.status);
+      console.log(json);
+    } catch (err) {
+      // Tratamento de erro aqui
+    }
+  };
 
   return (
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">

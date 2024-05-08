@@ -7,33 +7,33 @@ const FormSignUp = () => {
     birthDate: '',
     cpf: '',
     cnpj: '',
-    tel:'',
+    tel: '',
     email: '',
     password: '',
-  })
+  });
 
-  const handleFormEdit = (event, name) => {
+  const handleFormEdit = (event: React.ChangeEvent<HTMLInputElement>, name: string) => {
     setFormData({
       ...formData,
       [name]: event.target.value
-    })
-  }
+    });
+  };
 
-  const handleForm = async (event) => {
-   try {
-    event.preventDefault()
-    const response = await fetch(/*endereço backend,*/ {
-      method: 'POST',
-      body: JSON.stringify(formData)
-    })
-    const json = await response.json()
-    console.log(response.status)
-    console.log(json)
+  const handleForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault();
+      const response = await fetch('/*endereço backend*/', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
+      const json = await response.json();
+      console.log(response.status);
+      console.log(json);
+    } catch (err) {
+      // Tratamento de erro aqui
+    }
+  };
 
-   } catch (err) {
-
-   }
-  }
 
 
 

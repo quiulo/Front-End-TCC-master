@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import logo from "../assets/logoBranca.png";
 import user from "../assets/user.webp";
-import {Menu , X } from "lucide-react"
+// import {Menu , X } from "lucide-react"
 import { useState} from "react";
 
  const Navbar = () => {
@@ -17,7 +17,7 @@ import { useState} from "react";
     <div className="bg-azul px-12 py-2 flex justify-between items-center ">
         <img className="h-12 "src={logo} />
             <button className="md:hidden" onClick={toggleMenu}>
-              {menuOpen ? <X color="white"/> : <Menu color="white"/>}
+              {menuOpen ? <div color="white"/> : <div color="white"/>}
             </button>
             {menuOpen ?  <ul className="bg-azul">
                   <li className="text-branco hover:bg-branco hover:text-azul rounded-md px-2 py-0.5 text-xl font-medium "><Link to="/">Home</Link></li>

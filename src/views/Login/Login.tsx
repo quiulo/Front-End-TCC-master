@@ -4,28 +4,17 @@ import FormLogin from '../../components/Forms/FormLogin';
 
 const Login = () => {
  return (
-    <div>
-      <div className='  '>
-        <div className=' '>
-            <img src={logoBranca} alt=""/>
-        </div>
-        <div className=''>
-             <FormLogin />
-        </div>
-        </div>
-
-
-    </div>
+<div className='flex flex-col lg:flex-row h-screen'>
+  <div className='bg-azul w-full lg:w-1/2 flex items-center justify-center'>
+    <img src={logoBranca} alt=""/>
+  </div>
+  <div className='w-full lg:w-1/2 flex items-center justify-center'>
+    <FormLogin />
+  </div>
+</div>
+<Footer />
  )
 }
 
 export default Login
 
-{/* <div className=' lg:flex h-screen  '>
-<div className=' bg-azul w-1/2  flex items-center justify-center'>
-    <img src={logoBranca} alt=""/>
-</div>
-<div className='w-1/2 flex items-center justify-center'>
-     <FormLogin />
-</div>
-</div> */}
