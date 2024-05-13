@@ -43,7 +43,7 @@ const CreateModalPost = () => {
                 <textarea className='rounded-2xl w-full h-24'></textarea>
                 <br />
                 <label className='font-bold'>Insira uma imagem</label>
-                <input className="w-60"type="file" name="arquivos"   accept="image/png, image/jpeg"  multiple /> 
+                <input className="w-60 lg:96"type="file" name="arquivos"   accept="image/png, image/jpeg"  multiple /> 
             </form>
             <button className='mt-12 w-24 h-10 bg-azul text-branco text-center font-bold rounded-2xl lg:w-72 lg:mt-20'>Postar</button>
         </div>

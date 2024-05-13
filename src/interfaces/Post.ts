@@ -1,6 +1,7 @@
 export interface Post {
     id: string;
     author: {
+      filter(arg0: (author: any) => any): unknown;
       name: string;
       imageUrl: string;
       backgroundImgUrl: string;

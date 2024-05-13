@@ -4,18 +4,14 @@ import RecuperacaoSenha from '../../components/Forms/RecuperacaoSenha';
 
 const EsqueceuSenha = () => {
   return (
-    <div>
-      <div className='flex h-screen'>
-        <div className=' bg-azul w-1/2  flex items-center justify-center'>
-            <img className='hover:h-72' src={logoBranca} alt="" srcset="" />
-        </div>
-        <div className='w-1/2 flex items-center justify-center'>
-             <RecuperacaoSenha />
-        </div>
-        </div>
-
-
-    </div>
+<div className='flex flex-col items-center lg:flex-row h-full'>
+  <div className='bg-azul w-full lg:w-1/2 flex items-center justify-center'>
+    <img src={logoBranca} alt=""/>
+  </div>
+  <div className='w-full lg:w-1/2 flex items-center justify-center'>
+    <RecuperacaoSenha /> 
+  </div>
+</div>
  )
 }
 

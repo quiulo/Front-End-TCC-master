@@ -22,6 +22,8 @@ import {
     const { user } = useUser();
   
     const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    
   
     return (
       <div className="flex flex-col gap-4 px-6 py-4 rounded-2xl bg-white lg:w-1/2">
