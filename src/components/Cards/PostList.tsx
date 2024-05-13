@@ -16,3 +16,4 @@ const PostList = ({ posts }: Props) => {
 };
 
 export default PostList;
+

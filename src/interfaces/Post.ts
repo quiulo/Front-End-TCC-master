@@ -3,6 +3,7 @@ export interface Post {
     author: {
       name: string;
       imageUrl: string;
+      backgroundImgUrl: string;
       job: string;
       id: string;
     };
@@ -12,6 +13,7 @@ export interface Post {
     comments: {
       name: string;
       comment: string;
+      imageUrl: string;
     }[];
   }
   

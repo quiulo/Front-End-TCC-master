@@ -1,11 +1,11 @@
 import React from 'react'
-import {FaInstagram, FaLinkedin, FaFacebook} from 'react-icons/fa6'
+import {FaInstagram, FaLinkedin, FaFacebook} from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
   return (
-      <div className='bg-azul  bottom-0 w-full text-branco space-y-4 py-4'>
+      <div className='bg-azul bottom-0 w-full text-branco space-y-4 py-4'>
         <div className='flex justify-center items-center gap-28  '>
             <a href='https://www.instagram.com/dazzle.ltda?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='><FaInstagram></FaInstagram></a>
             <a href=''><FaFacebook></FaFacebook></a>
