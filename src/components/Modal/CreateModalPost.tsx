@@ -2,35 +2,60 @@ import React from 'react'
 import { SquarePlus } from 'lucide-react';
 import { useState } from 'react';
 import { X } from "lucide-react"
+import { Post } from "../../interfaces/Post";
+import {useParams} from 'react-router-dom'
+import { posts } from '../../services/Post';
+import CreatePostService from './services/CreatePostService';
 
-interface InputProps {
 
-    label: string,
-    value: string,
-    updateValue (value: any): void
+// interface Props {
+//   post: Post
+// }
 
-  }
 
-  const Input = ({ label, value, updateValue }: InputProps) => {
-
-    return (
-      <>
-        <label>{label}</label>
-        <input value={value} onChange={event => updateValue(event.target.value)} />
-      </>
-    )
-  }
 
 
 const CreateModalPost = () => {
-    const [content, setContent] = useState ("");
-    const [image, setImage] = useState ("");
+  // const [content, setContent] = useState ("");
+  // const [image, setImage] = useState ("");
+
+  // const params = useParams()
+
+  // }
+
+
+
+  // const handleInput = (event) => {
+  //     const {name, value} = event.target;
+  //     setContent({...posts, [name]: value })
+  // }
+
+  // const handleDelete = async (event) => {
+  //     event.preventDefault();
+  //     await CreatePostService.deletePost(params.id, post)
+  // }
+
+  // const handleSubmit = async (event) => {
+  //    event.preventDefault();
+  //    if(params.id){
+  //     await CreatePostService.updatePost(params.id, post)
+  //    } else {
+  //     await CreatePostService.createPost(post);
+  //    }
+     
+  // }
+
+  
+
+
+ 
  
     const [menuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
        setMenuOpen (!menuOpen);
     };
+  
   return (
     <div>
      <button onClick={toggleMenu}>
@@ -49,9 +74,11 @@ const CreateModalPost = () => {
         </div>
     )}
     
-
+  
       </div>
   )
-}
-
+}  
+   
 export default CreateModalPost
+
+
