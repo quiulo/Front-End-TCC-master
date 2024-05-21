@@ -36,7 +36,7 @@ const PostDetails = ({ post }: Props) => {
 
       <hr/>
 
-      <div className="flex items-center justify-between text-azul font-bold">
+      <div className="flex items-center justify-around text-azul font-bold">
         <div className="flex items-center gap-2">
           <button>
             <ThumbsUp />
@@ -53,10 +53,7 @@ const PostDetails = ({ post }: Props) => {
             <p className="hidden lg:block">Comentários</p>
           </span>
         </span>
-        <button className="flex items-center gap-2">
-          <Share />
-          <p className="hidden lg:block">Compartilhar</p>
-        </button>
+
       </div>
 
       <hr />

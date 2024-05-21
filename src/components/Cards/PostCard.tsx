@@ -80,10 +80,7 @@ import {
               </>
             )}
           </button>
-          <button className="flex items-center gap-2 text-azul">
-            <Share />
-            <p className="hidden lg:block">Compartilhar</p>
-          </button>
+  
         </div>
         {isOpen &&
           post.comments.map((comment) => (

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const FormLogin = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    nome: '',
     password: '',
   });
 
@@ -62,9 +62,9 @@ const FormLogin = () => {
             
               <form className="space-y-6" action="#" method="POST">
                 <div>
-                  <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email </label>
+                  <label for="text" className="block text-sm font-medium leading-6 text-gray-900">Nome completo </label>
                   <div className="mt-2">
-                    <input id="email" name="email" type="email" placeholder="Email" required value={formData.email} onChange={(e) => {handleFormEdit(e, 'email')}} autocomplete="email" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                    <input id="text" name="text" type="text" placeholder="Nome completo" required value={formData.nome} onChange={(e) => {handleFormEdit(e, 'nome')}} autocomplete="nome" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
                   </div>
                 </div>
           
@@ -101,7 +101,7 @@ const FormLogin = () => {
               
               <p className="mt-10 text-center text-sm text-gray-500">
                 Não é cadastrado?
-                <Link to="/SignUp">
+                <Link to="/SignUpCliente">
                 <a href="#" className="font-semibold leading-6 text-azul underline hover:text-blue-800"> Cadastre-se aqui</a>
                 </Link>
               </p>

@@ -4,6 +4,8 @@ import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { authors } from "../../services/Author";
 
+
+
 const PerfilAutonomo = () => {
   const { id } = useParams();
 
@@ -42,10 +44,12 @@ const PerfilAutonomo = () => {
               <h1 className=" text-center text-2xl text-black font-bold ">
                 {author.name}
               </h1>
+              
             </div>
           </div>
         </div>
       </div>
+     
     </div>
   );
 };

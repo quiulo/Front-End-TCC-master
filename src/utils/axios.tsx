@@ -1,29 +1,36 @@
-import axios, { Axios } from "axios";
+import axios from 'axios';
 
-const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL
-})
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+});
 
-// Add a request interceptor
-axiosInstance.interceptors.request.use(function (config) {
-    // Do something before request is sent
-    config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-
+// Adiciona um interceptor de requisição
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
     return config;
-  }, function (error) {
-    // Do something with request error
+  },
+  (error) => {
     return Promise.reject(error);
-  });
+  }
+);
 
-// Add a response interceptor
-axiosInstance.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
+// Adiciona um interceptor de resposta
+api.interceptors.response.use(
+  (response) => {
     return response;
-  }, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
+  },
+  (error) => {
+    // Trate erros globais aqui, por exemplo, redirecione para login se 401
+    if (error.response && error.response.status === 401) {
+      // Redireciona ou executa ação de logout
+      console.error('Unauthorized access - maybe redirect to login');
+    }
     return Promise.reject(error);
-  });
+  }
+);
 
-export default axiosInstance;
+export default api;

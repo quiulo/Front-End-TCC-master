@@ -9,6 +9,7 @@ import SideWidget from '../../components/Cards/SideWidget';
 import { useUser } from '../../UserContext';
 import { Link } from 'react-router-dom';
 import CreateModalPost from '../../components/Modal/CreateModalPost';
+import CategoriesModal from '../../components/Modal/CategoriesModal';
 
 
 function Home() {
@@ -63,10 +64,7 @@ function Home() {
                        
                         </span>
                         <button className="bg-azul rounded-lg p-2 ">
-                            <Filter
-                                size={28}
-                                className="fill-white stroke-white"
-                            />
+                           <CategoriesModal />
                             
                         </button>
                         
