@@ -40,19 +40,21 @@ import {
             {post.author.job}
           </h2>
         </div>
+        <hr />
+        <div className="flex justify-center text-xl">
+            <blockquote className="line-clamp-2 max-w-[500px]">
+              {post.content}
+            </blockquote>
+          </div>
         <Link to={`/post/${post.id}`} className="flex flex-col gap-4">
           <img
             src={post.imageUrl}
             alt=""
             className="w-full h-[256px] object-cover rounded-2xl bg-primary"
           />
-          <div className="flex justify-center text-xl">
-            <blockquote className="line-clamp-2 max-w-[500px]">
-              {post.content}
-            </blockquote>
-          </div>
+          
         </Link>
-        <div className="flex items-center justify-between text-azul font-bold text-lg">
+        <div className="flex items-center justify-around text-azul font-bold text-lg">
           <div className="flex items-center gap-2 text-azul">
             <button>
               <ThumbsUp />

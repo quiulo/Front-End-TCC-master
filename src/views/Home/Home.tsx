@@ -41,7 +41,7 @@ function Home() {
                         <img
                         src={user.imageUrl}
                         alt={`foto de perfil do usuário ${user.name}`}
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-10 h-10 rounded-full object-cover"
                         /></button>
 
                         <div>
@@ -49,14 +49,14 @@ function Home() {
                             <button><CreateModalPost /></button>
                         </div>
 
-                        <span className="w-40 flex items-center  lg:w-72 gap-2 border-2 border-azul bg-white rounded-lg px-2">
+                        <span className="w-32 flex items-center  lg:w-72 gap-2 border-2 border-azul bg-white rounded-lg px-2">
                             <button onClick={handleSearch}>
                                 <Search size={20} className="text-azul text-xl lg:text-2xl" />
                             </button>
                             <input
                             
                                 placeholder="Pesquisar"
-                                className="focus:ring-0 focus:outline-none border-none w-24 lg:w-72"
+                                className="focus:ring-0 text-sm focus:outline-none border-none w-20 lg:w-72"
                                 onChange={handleChange}
                                 value={term}
                             />

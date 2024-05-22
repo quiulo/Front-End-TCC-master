@@ -22,10 +22,6 @@ const SideWidget = () => {
         <h1 className="text-center text-2xl text-black font-bold">
           {user.name}
         </h1>
-        <div className="flex items-center justify-center gap-2">
-          <Briefcase size={32} className="text-azul w-6 h-6 " />
-          <h2 className="text-azul font-bold  text-base">{user.job}</h2>
-        </div>
         <Link
           to={"/perfil"}
           className="w-full text-center py-2 bg-azul text-branco text-base rounded-lg font-bold shadow-2xl"

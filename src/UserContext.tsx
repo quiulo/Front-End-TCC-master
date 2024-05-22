@@ -4,7 +4,6 @@ import React, { createContext, useContext, useState } from "react";
 interface User {
   name: string;
   email: string;
-  job: string;
   type: 'cliente' | 'profissional'; // Adicionando o tipo de usuário
   backgroundImageUrl: string;
   imageUrl: string;
@@ -24,7 +23,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User>({
     name: "Mersun",
     email: "mersun@gmail.com",
-    job: "Administrador",
     type: 'cliente', // Definindo o tipo como cliente
     backgroundImageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Lanchonete_frente_da_pra%C3%A7a_da_S%C3%A9%2C_S%C3%A3o_Paulo%2C_Brasil.jpg/1200px-Lanchonete_frente_da_pra%C3%A7a_da_S%C3%A9%2C_S%C3%A3o_Paulo%2C_Brasil.jpg",
