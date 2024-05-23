@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import { SquarePlus, X } from 'lucide-react';
-// import { Post } from "../../interfaces/Post";
-// import {useParams} from 'react-router-dom'
-// import { posts } from '../../services/Post';
-// import CreatePostService from './services/CreatePostService';
+import api from '../../utils/axios';
 
 const CreateModalPost = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [postContent, setPostContent] = useState('');
+  const [postImage, setPostImage] = useState(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handlePost = async () => {
+    const postData = new FormData();
+    postData.append('content', postContent);
+    postData.append('image', postImage);
+
+    try {
+      const response = await api.post('/posts', postData); // Envia a requisição POST para o endpoint '/posts'
+      console.log('Post criado com sucesso:', response.data);
+      setPostContent('');
+      setPostImage(null);
+      toggleMenu();
+    } catch (error) {
+      console.error('Erro ao criar post:', error);
+    }
   };
 
   return (
@@ -25,12 +40,27 @@ const CreateModalPost = () => {
             </button>
             <form className='flex flex-col items-start gap-2 lg:gap-5'>
               <label className='font-bold'>Escreva aqui</label>
-              <textarea className='rounded-2xl w-full h-24'></textarea>
+              <textarea
+                className='rounded-2xl w-full h-24'
+                value={postContent}
+                onChange={(e) => setPostContent(e.target.value)}
+              ></textarea>
               <br />
               <label className='font-bold'>Insira uma imagem</label>
-              <input className="w-60 lg:w-96" type="file" name="arquivos" accept="image/png, image/jpeg" multiple /> 
+              <input
+                className="w-60 lg:w-96"
+                type="file"
+                name="arquivo"
+                accept="image/png, image/jpeg"
+                onChange={(e) => setPostImage(e.target.files[0])}
+              /> 
             </form>
-            <button className='mt-12 w-24 h-10 bg-azul text-branco text-center font-bold rounded-2xl lg:w-72 lg:mt-20'>Postar</button>
+            <button
+              className='mt-12 w-24 h-10 bg-azul text-branco text-center font-bold rounded-2xl lg:w-72 lg:mt-20'
+              onClick={handlePost}
+            >
+              Postar
+            </button>
           </div>
         </div>
       )}
@@ -43,7 +73,10 @@ export default CreateModalPost;
 
 
 
-
+// import { Post } from "../../interfaces/Post";
+// import {useParams} from 'react-router-dom'
+// import { posts } from '../../services/Post';
+// import CreatePostService from './services/CreatePostService';
 // import React from 'react'
 // import { SquarePlus } from 'lucide-react';
 // import { useState } from 'react';

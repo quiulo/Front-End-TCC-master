@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import axios from 'axios';
+import api from '../../utils/axios';
 import { Link } from 'react-router-dom';
 interface FormData {
   name: string;
@@ -26,7 +26,7 @@ const FormSignUpCliente: React.FC = () => {
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register-client`, formData);
+      const response = await api.post(`${import.meta.env.VITE_API_BASE_URL}/api/register-client`, formData);
       console.log(response.status);
       console.log(response.data);
     } catch (error) {

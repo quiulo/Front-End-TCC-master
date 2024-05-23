@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-      <div className="text-4xl font-ubuntu">
+      <div className="text-4xl font-ubuntu bg-stone-100">
         <Navbar />
         <Outlet />
         <Footer />

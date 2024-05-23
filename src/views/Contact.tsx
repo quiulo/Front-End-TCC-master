@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from '../components/Footer'
 import FormContact from '../components/Forms/FormContact'
 
 const Contact = () => {
