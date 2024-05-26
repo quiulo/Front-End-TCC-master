@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SquarePlus, X } from 'lucide-react';
 import api from '../../utils/axios';
 
-const CreateModalPost = ({ onPostCreated }) => { // Adicione uma propriedade de retorno de chamada para lidar com a criação de post
+const CreateModalPost = ({ onPostCreated }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [postContent, setPostContent] = useState('');
   const [postImage, setPostImage] = useState(null);
@@ -17,7 +17,7 @@ const CreateModalPost = ({ onPostCreated }) => { // Adicione uma propriedade de 
     postData.append('image', postImage);
 
     try {
-      const response = await api.post('/posts', postData);
+      const response = await api.post('/post', postData); // Endpoint do backend para criar um post
       console.log('Post criado com sucesso:', response.data);
 
       // Adiciona o novo post à lista de posts na página inicial
