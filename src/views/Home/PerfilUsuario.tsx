@@ -5,6 +5,7 @@ import { Undo2 } from 'lucide-react';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 import api from '../../utils/axios';
+import Agenda from '../../components/Agenda';
 
 const PerfilUsuario = () => {
     const { user, setUser } = useUser();
@@ -27,7 +28,7 @@ const PerfilUsuario = () => {
   
       try {
           // Envie uma solicitação HTTP POST ou PUT com os dados atualizados para o backend
-          const response = await axios.put(`/api/users/${user.id}`, formData);
+          const response = await api.put(`/api/users/${user.id}`, formData);
   
           // Verifique se a solicitação foi bem-sucedida
           if (response.status === 200) {
@@ -105,7 +106,7 @@ const PerfilUsuario = () => {
                         }
                     </div>
                     <br />
-
+                         <Agenda />
                     {/* Renderiza os campos de Profissão e CPF apenas para profissionais */}
                     {isProfissional && 
                         <>

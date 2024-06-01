@@ -5,16 +5,18 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Post } from "../../interfaces/Post";
 import { useUser } from "../../UserContext";
 import { useState } from "react";
 import axios from 'axios';
+import api from "../../utils/axios";
+import { Post } from "../../interfaces/Post";
 
 interface Props {
   post: Post;
 }
 
 const PostCard = ({ post }: Props) => {
+  console.log('Rendering PostCard with post:', post);
   const { user } = useUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [likes, setLikes] = useState<number>(post.likes);
@@ -31,7 +33,6 @@ const PostCard = ({ post }: Props) => {
       await updateLikesInDatabase(post.id, newLikes);
     } catch (error) {
       console.error("Erro ao atualizar curtidas no banco de dados:", error);
-      // Reverter o estado em caso de erro
       setLikes(likes);
       setLiked(!liked);
     }
@@ -39,9 +40,7 @@ const PostCard = ({ post }: Props) => {
 
   const updateLikesInDatabase = async (postId: string, newLikes: number) => {
     try {
-      const response = await axios.post(`/api/posts/${postId}/likes`, {
-        likes: newLikes
-      });
+      const response = await api.post(`/api/posts/${postId}/curtidas`, { likes: newLikes });
       console.log(`Post ${postId} updated with ${newLikes} likes`);
       return response.data;
     } catch (error) {
@@ -61,10 +60,11 @@ const PostCard = ({ post }: Props) => {
       name: user.name,
       comment: newComment,
       imageUrl: user.imageUrl,
+      time: new Date()
     };
 
     try {
-      const response = await axios.post(`/api/posts/${post.id}/comments`, commentData);
+      const response = await axios.post(`/api/posts/${post.id}/comentarios`, commentData);
       setComments([...comments, response.data]);
       setNewComment('');
     } catch (error) {
@@ -81,12 +81,12 @@ const PostCard = ({ post }: Props) => {
             alt=""
             className="w-8 h-8 object-cover rounded-full bg-primary"
           />
-          <h1 className="text-xl font-bold">{post.author.name}</h1>
-        </Link>
+          <h1 className="text-xl font-bold">{post.author.name} </h1>
+        </Link> 
         <h2 className="text-base font-semibold text-azul text-primary">
           {post.author.job}
         </h2>
-      </div>
+      </div> 
       <hr />
       <div className="flex justify-center text-xl">
         <blockquote className="line-clamp-2 max-w-[500px]">
@@ -101,60 +101,67 @@ const PostCard = ({ post }: Props) => {
         />
       </Link>
       <div className="flex items-center justify-around text-azul font-bold text-lg">
-        <div className="flex items-center gap-2 text-azul">
-          <button onClick={handleLike}>
-            <ThumbsUp className={liked ? 'fill-azul stroke-stone-200' : ''} />
-          </button>
-          <span className="flex gap-1">
-            <p>{likes}</p> <p className="hidden lg:block">Curtidas</p>
-          </span>
+        <div className="flex items-center gap-2">
+          <ThumbsUp
+            className={`text-2xl cursor-pointer ${liked ? 'text-blue-500' : ''}`}
+            onClick={handleLike}
+          />
+          {likes}
         </div>
-        <button
-          className="flex items-center gap-2 text-azul"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? (
-            <span className="flex gap-1 text-azul">
-              <MessageCircleX />
-              <h2>Ler Menos</h2>
-            </span>
-          ) : (
-            <>
-              <MessageCircle />
-              <span className="flex gap-1">
-                <p>{comments.length}</p>{" "}
-                <p className="hidden lg:block">Comentários</p>
-              </span>
-            </>
-          )}
-        </button>
+        <div className="flex items-center gap-2">
+          <MessageCircle className="text-2xl" />
+          {comments.length}
+        </div>
+        <div className="flex items-center gap-2">
+          <Send className="text-2xl" />
+          Enviar
+        </div>
       </div>
-      {isOpen &&
-        comments.map((comment, index) => (
-          <div key={index} className="flex text-xl gap-2 text-azul bg-branco p-3 rounded-xl">
-            <img className="w-8 h-8 object-cover rounded-full" src={comment.imageUrl} />
-            <div className="flex flex-col border-2 border-azul p-3 rounded-2xl">
-              <h2 className="font-bold">{comment.name}</h2>
-              <blockquote className="max-w-[375px] overflow-y-auto">{comment.comment}</blockquote>
-            </div>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="text-sm font-bold text-blue-600"
+      >
+        Ver comentários
+      </button>
+      {isOpen && (
+        <div>
+          <div>
+            {comments.map((comment, index) => (
+              <div key={index} className="flex items-center gap-2 my-2">
+                <img
+                  src={comment.imageUrl}
+                  alt=""
+                  className="w-6 h-6 object-cover rounded-full bg-primary"
+                />
+                <div>
+                  <p className="font-semibold">{comment.name}</p>
+                  <p>{comment.comment}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      <div className="flex items-center px-2 lg:px-5 py-3 justify-between rounded-2xl">
-        <img
-          src={user.imageUrl}
-          alt=""
-          className="h-8 w-8 rounded-full object-cover"
-        />
-        <input
-          className="rounded-2xl w-full mx-2 lg:mx-8"
-          placeholder="Escreva um comentário"
-          value={newComment}
-          onChange={handleCommentChange}
-        />
-        <button onClick={handleCommentSubmit}>
-          <Send size={24} className="text-azul" />
-        </button>
-      </div>
+          <div className="flex items-center gap-2 mt-2">
+            <img
+              src={user.imageUrl}
+              alt=""
+              className="w-8 h-8 object-cover rounded-full bg-primary"
+            />
+            <input
+              type="text"
+              className="flex-1 bg-gray-200 rounded-full px-4 py-2"
+              value={newComment}
+              onChange={handleCommentChange}
+              placeholder="Escreva um comentário..."
+            />
+            <button
+              onClick={handleCommentSubmit}
+              className="bg-blue-500 text-white rounded-full px-4 py-2"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

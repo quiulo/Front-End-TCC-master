@@ -1,6 +1,6 @@
 import React from 'react'
 import logoBranca from "../../assets/logoBranca.png";
-import FormSignUpProfissional from '../../components/Forms/FormSignUp';
+import FormSignUpProfissional from '../../components/Forms/FormSignUpProfissional';
 
 
 const SignUpProfissional = () => {

@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 import { Filter, X, Handshake, Cpu, Shirt, Wrench, HeartPulse, Home } from "lucide-react";
 
-function CategoriesModal() {
+interface Props {
+  onSortByNewest: () => void;
+  onSortByOldest: () => void;
+  onCategorySelected: (category: string | null) => void;
+}
+
+const CategoriesModal = ({ onSortByNewest, onSortByOldest, onCategorySelected }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    setSelectedCategory(null); // Reset selected category when menu is closed
+  };
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    onCategorySelected(category); // Call the parent component function to filter posts
+    toggleMenu(); // Close the menu
   };
 
   return (
@@ -21,10 +35,16 @@ function CategoriesModal() {
             </button>
             
             <div className="flex flex-col sm:flex-row p-8 gap-4 sm:gap-8">
-              <button className="w-full sm:w-40 h-10 bg-azul text-branco text-center font-bold rounded-2xl">
+              <button
+                onClick={onSortByNewest}
+                className="w-full sm:w-40 h-10 bg-azul text-branco text-center font-bold rounded-2xl"
+              >
                 Mais recentes
               </button>
-              <button className="w-full sm:w-40 h-10 bg-azul text-branco text-center font-bold rounded-2xl">
+              <button
+                onClick={onSortByOldest}
+                className="w-full sm:w-40 h-10 bg-azul text-branco text-center font-bold rounded-2xl"
+              >
                 Mais antigos
               </button>
             </div>
@@ -33,27 +53,27 @@ function CategoriesModal() {
 
             <div className="flex justify-center items-center my-8 flex-wrap mt-16 gap-6 gap-y-16 mb-16 sm:gap-8">
               <div className="flex flex-col items-center my-4 w-24 sm:w-20">
-                <Handshake size={45} />
+                <Handshake size={45} onClick={() => handleCategorySelect('Consultoria')} />
                 <span className="text-center">Consultoria</span>
               </div>
               <div className="flex flex-col items-center my-4 w-24 sm:w-20">
-                <Cpu size={45} />
+                <Cpu size={45} onClick={() => handleCategorySelect('Tecnologia')} />
                 <span className="text-center">Tecnologia</span>
               </div>
               <div className="flex flex-col items-center my-4 w-24 sm:w-20">
-                <Shirt size={45} />
+                <Shirt size={45} onClick={() => handleCategorySelect('Beleza')} />
                 <span className="text-center">Beleza</span>
               </div>
               <div className="flex flex-col items-center my-4 w-24 sm:w-20">
-                <Wrench size={45} />
+                <Wrench size={45} onClick={() => handleCategorySelect('Reformas')} />
                 <span className="text-center">Reformas</span>
               </div>
               <div className="flex flex-col items-center my-4 w-24 sm:w-20">
-                <HeartPulse size={45} />
+                <HeartPulse size={45} onClick={() => handleCategorySelect('Saúde')} />
                 <span className="text-center">Saúde</span>
               </div>
               <div className="flex flex-col items-center my-4 w-24 sm:w-20">
-                <Home size={45} />
+                <Home size={45} onClick={() => handleCategorySelect('Domésticos')} />
                 <span className="text-center">Domésticos</span>
               </div>
             </div>

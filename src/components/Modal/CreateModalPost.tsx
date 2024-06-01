@@ -49,7 +49,15 @@ const CreateModalPost = ({ onPostCreated }) => {
                 value={postContent}
                 onChange={(e) => setPostContent(e.target.value)}
               ></textarea>
-              <br />
+              <label className='font-bold text-azul'>Escolha a categoria:</label>
+                <select id="categoria" name="categoria" className='rounded-2xl'>
+                  <option value="consultoria">Consultoria</option>
+                  <option value="tecnologia">Tecnologia</option>
+                  <option value="beleza">Beleza</option>
+                  <option value="reformas">Reformas</option>
+                  <option value="saude">Saúde</option>
+                  <option value="domesticos">Domésticos</option>
+                </select>
               <label className='font-bold'>Insira uma imagem</label>
               <input
                 className="w-60 lg:w-96"
@@ -60,7 +68,7 @@ const CreateModalPost = ({ onPostCreated }) => {
               /> 
             </form>
             <button
-              className='mt-12 w-24 h-10 bg-azul text-branco text-center font-bold rounded-2xl lg:w-72 lg:mt-20'
+              className='mt-12 w-24 h-10 bg-azul text-branco text-center font-bold rounded-2xl '
               onClick={handlePost}
             >
               Postar

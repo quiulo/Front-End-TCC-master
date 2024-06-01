@@ -1,32 +1,32 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import api from '../../utils/axios';
 import { Link } from 'react-router-dom';
+
+
 interface FormData {
-  name: string;
-  tel: string;
+  nome: string;
   email: string;
-  password: string;
+  senha: string;
 }
 
 const FormSignUpCliente: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    tel: '',
+    nome: '',
     email: '',
-    password: '',
+    senha: '',
   });
 
-  const handleFormEdit = (event: ChangeEvent<HTMLInputElement>, name: keyof FormData) => {
+  const handleFormEdit = (event: ChangeEvent<HTMLInputElement>, nome: keyof FormData) => {
     setFormData({
       ...formData,
-      [name]: event.target.value
+      [nome]: event.target.value
     });
   };
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
-      const response = await api.post(`${import.meta.env.VITE_API_BASE_URL}/api/register-client`, formData);
+      const response = await api.post(`${import.meta.env.VITE_API_BASE_URL}/api/cliente`, formData);
       console.log(response.status);
       console.log(response.data);
     } catch (error) {
@@ -51,34 +51,23 @@ const FormSignUpCliente: React.FC = () => {
           <div>
               <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nome completo </label>
               <div class="mt-2">
-                <input id="name" name="name"  type='text' placeholder="Nome completo" required value={formData.name} onChange={(e) => {handleFormEdit(e, 'name')}} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="name" name="name"  type='text' placeholder="Nome completo" required value={formData.nome} onChange={(e) => {handleFormEdit(e, 'nome')}} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
-    
-            <div>
-              <label for="telefone" class="block text-sm font-medium leading-6 text-gray-900">Telefone</label>
-              <div class="mt-2">
-                <input id="telefone" name="telefone" type="tel" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}" required value={formData.tel} onChange={(e) => {handleFormEdit(e, 'tel')}} class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6"  placeholder="xx xxxxx-xxxx" />
-              </div>
-            </div>
-        
-    
-    
+  
             <div>
               <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email </label>
               <div class="mt-2">
-                <input id="email" name="email" type="email" placeholder="Email" required value={formData.email} onChange={(e) => {handleFormEdit(e, 'email')}}autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="email" name="email" type="email" placeholder="Email" required value={formData.email} onChange={(e) => {handleFormEdit(e, 'email')}} autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
         
-            
-    
             <div>
               <div class="flex items-center justify-between">
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Senha</label>
               </div>
               <div class="mt-2">
-                <input id="password" name="password" type="password" placeholder="Crie sua senha" required value={formData.password} onChange={(e) => {handleFormEdit(e, 'password')}}autocomplete="current-password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
+                <input id="password" name="password" type="password" placeholder="Crie sua senha" required value={formData.senha} onChange={(e) => {handleFormEdit(e, 'senha')}}autocomplete="current-password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-azul sm:text-sm sm:leading-6" />
               </div>
             </div>
       
