@@ -8,37 +8,38 @@ import SideWidget from '../../components/Cards/SideWidget';
 import { useUser } from '../../UserContext';
 import { Search } from "lucide-react";
 import { Post } from '../../interfaces/Post';
+import { posts } from '../../services/Post';
 
 
 const Home = () => {
     const { user } = useUser();
-    const [posts, setPosts] = useState<Post[]>([]);
+    // const [posts, setPosts] = useState<Post[]>([]);
     const [term, setTerm] = useState<string>("");
-    const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    // const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
+    // const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-    // useEffect(() => {
-    //     // Carregar posts da API ou fonte local
-    //     const fetchPosts = async () => {
-    //         try {
-    //             const response = await api.get('/api/posts');
-    //             setPosts(response.data);
-    //             setSortedPosts(response.data);
-    //         } catch (error) {
-    //             console.error("Erro ao carregar posts:", error);
-    //         }
-    //     };
+    // // useEffect(() => {
+    // //     // Carregar posts da API ou fonte local
+    // //     const fetchPosts = async () => {
+    // //         try {
+    // //             const response = await api.get('/api/posts');
+    // //             setPosts(response.data);
+    // //             setSortedPosts(response.data);
+    // //         } catch (error) {
+    // //             console.error("Erro ao carregar posts:", error);
+    // //         }
+    // //     };
 
-    //     fetchPosts();
-    // }, []);
+    // //     fetchPosts();
+    // // }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTerm(e.target.value);
     };
 
-    const handleSearch = () => {
-        console.log(term);
-    };
+    // const handleSearch = () => {
+    //     console.log(term);
+    // };
 
     const sortPostsByNewest = () => {
         const sorted = [...posts].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
@@ -79,7 +80,7 @@ const Home = () => {
                     </div>
                     <CreateModalPost onPostCreated={undefined} />
                     <span className="w-32 flex items-center lg:w-72 gap-2 border-2 border-azul bg-white rounded-lg px-2">
-                        <button onClick={handleSearch}>
+                        <button>
                             <Search size={20} className="text-azul text-xl lg:text-2xl" />
                         </button>
                         <input
@@ -98,7 +99,7 @@ const Home = () => {
                         />
                     </button>
                 </div>
-                <PostList posts={sortedPosts} />
+                <PostList posts={posts} />
             </section>
             <SideWidget />
         </div>

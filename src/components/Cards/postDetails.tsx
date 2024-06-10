@@ -80,9 +80,12 @@ const PostDetails = ({ post }: Props) => {
           />
           <h1 className="text-xl font-bold">{post.author.name}</h1>
         </Link>
-        <h2 className="text-base font-semibold text-azul">
+        <div className="flex flex-col">
+        <h2 className="text-base font-semibold text-azul text-primary">
           {post.author.job}
         </h2>
+        <h2 className="text-sm  text-primary">{post.category}</h2>
+        </div>
        
       </div>
       <hr />

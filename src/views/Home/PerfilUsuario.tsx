@@ -86,14 +86,14 @@ const PerfilUsuario = () => {
 
             <div className='lg:flex justify-center'>
                 <form className='flex flex-col p-4 text-lg text-azul font-bold lg:w-1/2' onSubmit={handleSubmit}>
-                    {/* Renderiza o campo Nome apenas para profissionais */}
+                    {/* Renderiza o campo Nome apenas para profissionais
                     {isProfissional ? 
                         <label>Nome</label> :
                         <span>Nome</span>
-                    }
+                    } */}
                     <div className='flex items-center justify-between gap-4 '>
                         {/* Renderiza o campo Nome apenas para profissionais */}
-                        {isProfissional ? 
+                        {/* {isProfissional ? 
                             <input 
                                 className="w-full rounded-xl " 
                                 type="text" 
@@ -103,11 +103,11 @@ const PerfilUsuario = () => {
                                 onChange={handleChange}  
                             /> :
                             <span>{formData.nome}</span>
-                        }
+                        } */}
                     </div>
                     <br />
-                         <Agenda />
-                    {/* Renderiza os campos de Profissão e CPF apenas para profissionais */}
+                        
+                    {/* Renderiza os campos de Profissão e CPF apenas para profissionais
                     {isProfissional && 
                         <>
                             <label>Profissão</label>
@@ -135,7 +135,7 @@ const PerfilUsuario = () => {
                             </div>
                             <br />
                         </>
-                    }
+                    } */}
                     <label>Foto de Perfil</label>
                     <div className='flex items-center justify-between gap-4 '>
                         <input 
@@ -148,6 +148,14 @@ const PerfilUsuario = () => {
                         />
                     </div>
                     <br />
+
+                    <label>Nome</label>
+                    <input 
+                            className="w-full rounded-xl" 
+                            type="text" 
+                           placeholder={user.name}
+                           
+                        />
                     <label>Imagem de Fundo</label>
                     <div className='flex items-center justify-between gap-4 '>
                         <input 

@@ -3,6 +3,10 @@ import { Undo2 } from "lucide-react";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { authors } from "../../services/Author";
+import Agenda from "../../components/Agenda";
+import PostCard from "../../components/Cards/PostCard";
+import { posts } from "../../services/Post";
+import PostList from "../../components/Cards/PostList";
 
 
 
@@ -16,6 +20,7 @@ const PerfilAutonomo = () => {
   }
   return (
     <div className="bg-stone-100">
+      
       <div className="flex flex-col gap-3 px-4 py-6  rounded-2xl">
         <Link to="/">
           <Undo2 className="absolute bg-branco  rounded-tl-lg rounded-br-lg mt-3  h-8 w-8" />
@@ -49,7 +54,12 @@ const PerfilAutonomo = () => {
           </div>
         </div>
       </div>
-     
+
+      <div className="h-1/2 flex justify-center">
+      <Agenda />
+      </div>
+      <br /><br /><br />
+       
     </div>
   );
 };

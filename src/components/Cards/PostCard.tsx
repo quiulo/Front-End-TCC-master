@@ -63,13 +63,13 @@ const PostCard = ({ post }: Props) => {
       time: new Date()
     };
 
-    try {
-      const response = await axios.post(`/api/posts/${post.id}/comentarios`, commentData);
-      setComments([...comments, response.data]);
-      setNewComment('');
-    } catch (error) {
-      console.error("Erro ao enviar comentário:", error);
-    }
+    // try {
+    //   const response = await axios.post(`/api/posts/${post.id}/comentarios`, commentData);
+    //   setComments([...comments, response.data]);
+    //   setNewComment('');
+    // } catch (error) {
+    //   console.error("Erro ao enviar comentário:", error);
+    // }
   };
 
   return (
@@ -83,9 +83,14 @@ const PostCard = ({ post }: Props) => {
           />
           <h1 className="text-xl font-bold">{post.author.name} </h1>
         </Link> 
+
+        <div className="flex flex-col">
         <h2 className="text-base font-semibold text-azul text-primary">
           {post.author.job}
         </h2>
+        <h2 className="text-sm  text-primary">{post.category}</h2>
+        </div>
+
       </div> 
       <hr />
       <div className="flex justify-center text-xl">
@@ -133,9 +138,9 @@ const PostCard = ({ post }: Props) => {
                   alt=""
                   className="w-6 h-6 object-cover rounded-full bg-primary"
                 />
-                <div>
-                  <p className="font-semibold">{comment.name}</p>
-                  <p>{comment.comment}</p>
+                <div className="border-2 border-azul p-3 rounded-2xl" >
+                  <p className="font-semibold text-xl">{comment.name}</p>
+                  <p className="text-lg">{comment.comment}</p>
                 </div>
               </div>
             ))}
@@ -155,7 +160,7 @@ const PostCard = ({ post }: Props) => {
             />
             <button
               onClick={handleCommentSubmit}
-              className="bg-blue-500 text-white rounded-full px-4 py-2"
+              className="bg-blue-500 text-white text-lg rounded-full px-4 py-2"
             >
               Enviar
             </button>
